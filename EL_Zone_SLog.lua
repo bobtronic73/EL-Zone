@@ -7,7 +7,7 @@
 				Input1 = InstanceInput {
 					SourceOp = "ColorSpaceTransform1",
 					Source = "Source",
-				},
+				}
 			},
 			Outputs = {
 				Output1 = InstanceOutput {
@@ -16,17 +16,17 @@
 				}
 			},
 			ViewInfo = GroupInfo {
-				Pos = { 202.917, 210.545 },
+				Pos = { 48.667, 89.7879 },
 				Flags = {
 					AllowPan = false,
 					AutoSnap = true,
 					RemoveRouters = true
 				},
-				Size = { 493, 68.1826, 246.5, 24.2424 },
+				Size = { 1095, 626.364, 246.5, 24.2424 },
 				Direction = "Horizontal",
 				PipeStyle = "Direct",
 				Scale = 1,
-				Offset = { -400.25, -306.909 }
+				Offset = { -238.917, -263.879 }
 			},
 			Tools = ordered() {
 				ColorSpaceTransform1 = ofx.com.blackmagicdesign.resolvefx.ColorSpaceTransformV2 {
@@ -34,7 +34,7 @@
 						colorSpaceTransformGroup = Input { Value = 1, },
 						inputColorSpace = Input { Value = FuID { "SGAMUT_COLORSPACE" }, },
 						inputGamma = Input { Value = FuID { "SONY_SLOG_GAMMA" }, },
-						outputColorSpace = Input { Value = FuID { "SGAMUT_COLORSPACE" }, },
+						outputColorSpace = Input { Value = FuID { "XYZ_COLORSPACE" }, },
 						outputGamma = Input { Value = FuID { "LINEAR_GAMMA" }, },
 						isRec2390ScalingEnabled = Input { Value = 0, },
 						toneMappingGroup = Input { Value = 1, },
@@ -74,7 +74,7 @@
 						advancedGroup = Input { Value = 1, },
 						doFwdOOTF = Input { Value = 0, },
 						doInvOOTF = Input { Value = 0, },
-						doCAT = Input { Value = 0, },
+						doCAT = Input { Value = 1, },
 						blendGroup = Input { Value = 0, },
 						blendIn = Input { Value = 1, },
 						blend = Input { Value = 0, },
@@ -83,9 +83,10 @@
 						refreshTrigger = Input { Value = 1, },
 						resolvefxVersion = Input { Value = "1.1", },
 					},
-					ViewInfo = OperatorInfo { Pos = { 216.75, 317.364 } },
+					ViewInfo = OperatorInfo { Pos = { 105.417, 317.364 } },
 				},
 				ColorGain1 = ColorGain {
+					CtrlWShown = false,
 					Inputs = {
 						LockRGB = Input { Value = 1, },
 						GainRed = Input { Expression = "ISO/BaseISO", },
@@ -119,6 +120,7 @@
 					ViewInfo = OperatorInfo { Pos = { 326.75, 317.364 } },
 				},
 				Group1 = GroupOperator {
+					CtrlWShown = false,
 					Inputs = ordered() {
 						Input1 = InstanceInput {
 							SourceOp = "CustomTool1_1",
@@ -132,8 +134,9 @@
 						}
 					},
 					ViewInfo = GroupInfo {
-						Pos = { 452, 316.621 },
+						Pos = { 483.333, 417.833 },
 						Flags = {
+							Expanded = true,
 							AllowPan = false,
 							AutoSnap = true,
 							RemoveRouters = true
@@ -631,9 +634,8 @@
 									SourceOp = "CustomTool1_1LUTIn4",
 									Source = "Value",
 								},
-								RedExpression = Input { Value = "max(max(r1,g1),b1)", },
-								GreenExpression = Input { Value = "max(max(r1,g1),b1)", },
-								BlueExpression = Input { Value = "max(max(r1,g1),b1)", },
+								RedExpression = Input { Value = "g1", },
+								BlueExpression = Input { Value = "g1", },
 								Image1 = Input {
 									SourceOp = "ColorGain1",
 									Source = "Output",
@@ -1096,6 +1098,7 @@
 					},
 				},
 				ColorSpaceTransform2 = ofx.com.blackmagicdesign.resolvefx.ColorSpaceTransformV2 {
+					CtrlWShown = false,
 					Inputs = {
 						Source = Input {
 							SourceOp = "Merge7",
@@ -1153,33 +1156,10 @@
 						refreshTrigger = Input { Value = 1, },
 						resolvefxVersion = Input { Value = "1.1", },
 					},
-					ViewInfo = OperatorInfo { Pos = { 583.75, 315.545 } },
+					ViewInfo = OperatorInfo { Pos = { 895.083, 316.151 } },
 				}
 			},
-			UserControls = ordered() {
-				ISO = {
-					LINKS_Name = "ISO",
-					LINKID_DataType = "Number",
-					INPID_InputControl = "SliderControl",
-					INP_Default = 450,
-					INP_Integer = true,
-					INP_MinScale = 100,
-					INP_MaxScale = 3200,
-					INP_MinAllowed = 100,
-					INP_MaxAllowed = 3200,
-				},
-				BaseISO = {
-					LINKS_Name = "Base ISO",
-					LINKID_DataType = "Number",
-					INPID_InputControl = "SliderControl",
-					INP_Default = 450,
-					INP_Integer = true,
-					INP_MinScale = 100,
-					INP_MaxScale = 3200,
-					INP_MinAllowed = 100,
-					INP_MaxAllowed = 3200,
-				}
-			}
+			UserControls = ordered() { ISO = { INP_MaxAllowed = 3200, INP_Integer = true, INPID_InputControl = "SliderControl", INP_MaxScale = 3200, INP_Default = 450, INP_MinScale = 100, INP_MinAllowed = 100, LINKID_DataType = "Number", LINKS_Name = "ISO", }, BaseISO = { INP_MaxAllowed = 3200, INP_Integer = true, INPID_InputControl = "SliderControl", INP_MaxScale = 3200, INP_Default = 450, INP_MinScale = 100, INP_MinAllowed = 100, LINKID_DataType = "Number", LINKS_Name = "Base ISO", } }
 		},
 		ex5_1LUTIn1 = LUTBezier {
 			KeyColorSplines = {
